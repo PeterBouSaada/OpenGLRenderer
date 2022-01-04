@@ -1,41 +1,29 @@
-#include <iostream>
+#include <Renderer/Core.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
-int main() {
+#include "UI/Window.h"
 
-	glm::vec2 windowSize = {1920, 1080};
-	bool fullscreen = false;
-
-	glfwInit();
-
-	glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-	GLFWmonitor* monitor;
-
-	if(fullscreen)
+namespace Renderer
+{
+	bool OnStart()
 	{
-		monitor = glfwGetPrimaryMonitor();
-	}
-	else
-	{
-		monitor = nullptr;
-	}
+		glm::vec2 windowSize = {1920, 1080};
 
-	GLFWwindow* window = glfwCreateWindow(windowSize.x, windowSize.y, "Test window", monitor, nullptr);
-	glfwMakeContextCurrent(window);
-	glfwSetWindowCloseCallback(window, [](GLFWwindow* window){ glfwSetWindowShouldClose(window, true); });
-	while(!glfwWindowShouldClose(window))
-	{
-		glfwSwapBuffers(window);
-		glfwPollEvents();
+		Renderer::Window window(windowSize, false);
+
+		while(!window.ShouldClose()) {
+			window.OnUpdate();
+		}
+
+		window.DestroyWindow();
+
+		return 0;
 	}
+}
 
-	glfwDestroyWindow(window);
-
-	return 0;
+int main()
+{
+	return Renderer::OnStart();
 }
