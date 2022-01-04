@@ -3,18 +3,25 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
-#include "UI/Window.h"
+#include "UI/WindowManager.h"
 
 namespace Renderer
 {
 	bool OnStart()
 	{
-		Renderer::Window window({1920, 1080}, false);
 
-		while(!window.ShouldClose())
+		for(int i = 0; i < 5; i++)
 		{
-			window.OnUpdate();
+			std::string name = "Window " + std::to_string(i + 1);
+			WindowManager::CreateWindow({400, 400}, name);
 		}
+
+		while(!WindowManager::ShouldClose())
+		{
+			WindowManager::OnUpdate();
+		}
+
+		WindowManager::OnExit();
 
 		return 0;
 	}
