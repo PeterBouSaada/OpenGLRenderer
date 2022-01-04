@@ -77,4 +77,9 @@ namespace Renderer
 		m_CloseCallbackFunc = func;
 		m_CallbackIndex = index;
 	}
+
+	void Window::SetCallbackIndex(int32_t index)
+	{
+		m_CallbackIndex = index;
+	}
 }

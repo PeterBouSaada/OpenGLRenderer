@@ -30,7 +30,7 @@ namespace Renderer
 			m_Windows.erase(m_Windows.begin() + index);
 			for(int i = 0; i < m_Windows.size(); i++)
 			{
-				m_Windows[i]->SetCloseCallback(WindowManager::DestroyWindow, i);
+				m_Windows[i]->SetCallbackIndex(i);
 			}
 			return true;
 		}

@@ -24,6 +24,8 @@ namespace Renderer
 
 		void SetCloseCallback(std::function<bool(uint32_t)> func, int32_t index);
 
+		void SetCallbackIndex(int32_t index);
+
 	private:
 		Window() {};
 		void InitializeGLFW(const glm::vec2& size, const std::string& name, const bool& fullscreen);
