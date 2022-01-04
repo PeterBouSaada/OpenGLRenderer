@@ -13,6 +13,11 @@ namespace Renderer
 		InitializeGLFW({sizeX, sizeY}, fullscreen);
 	}
 
+	Window::~Window()
+	{
+		DestroyWindow();
+	}
+
 	void Window::InitializeGLFW(const glm::vec2 &size, const bool &fullscreen)
 	{
 		if(!glfwInit())
@@ -53,6 +58,8 @@ namespace Renderer
 	void Window::DestroyWindow()
 	{
 		glfwDestroyWindow(m_Window);
+		glfwTerminate();
 	}
+
 
 }

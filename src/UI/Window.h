@@ -13,6 +13,7 @@ namespace Renderer
 		explicit Window(const glm::vec2& size = {1920, 1080}, const bool& fullscreen = false);
 		explicit Window(const uint32_t& sizeX = 1920, const uint32_t& sizeY = 1080, const bool& fullscreen = false);
 
+		~Window();
 
 		const bool ShouldClose();
 

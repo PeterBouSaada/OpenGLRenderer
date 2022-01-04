@@ -9,15 +9,12 @@ namespace Renderer
 {
 	bool OnStart()
 	{
-		glm::vec2 windowSize = {1920, 1080};
+		Renderer::Window window({1920, 1080}, false);
 
-		Renderer::Window window(windowSize, false);
-
-		while(!window.ShouldClose()) {
+		while(!window.ShouldClose())
+		{
 			window.OnUpdate();
 		}
-
-		window.DestroyWindow();
 
 		return 0;
 	}
