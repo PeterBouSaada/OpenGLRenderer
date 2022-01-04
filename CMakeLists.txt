@@ -13,7 +13,7 @@ add_executable(${PROJECT_NAME} ${SRC})
 
 target_include_directories(${PROJECT_NAME}
         PUBLIC
-            ${CMAKE_CURRENT_SOURCE_DIR}/src/
+            ${CMAKE_CURRENT_SOURCE_DIR}/src
             vendor/glm/
 
         PRIVATE

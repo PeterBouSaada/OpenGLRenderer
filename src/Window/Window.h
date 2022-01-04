@@ -1,8 +1,9 @@
 #pragma once
 
-#include <Renderer/Core.h>
-#include <GLFW/glfw3.h>
+#include <iostream>
+#include <string>
 #include <glm/glm.hpp>
+#include <GLFW/glfw3.h>
 #include <functional>
 
 namespace Renderer
