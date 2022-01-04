@@ -17,6 +17,7 @@ namespace Renderer
 		static bool DestroyWindow(const uint32_t& index);
 
 		static bool ShouldClose();
+		
 		static void OnUpdate();
 		static void OnExit();
 
