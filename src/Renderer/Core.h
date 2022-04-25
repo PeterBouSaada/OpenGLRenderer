@@ -11,3 +11,4 @@
 
 // Core Includes
 #include <Window/WindowManager.h>
+#include "Application/Application.h"

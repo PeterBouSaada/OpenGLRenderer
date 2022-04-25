@@ -11,16 +11,17 @@ namespace Renderer
 		return m_Instance;
 	}
 
-	void WindowManager::CreateWindow(const glm::vec2 &windowSize, const std::string& name,  const bool &fullscreen)
+	 Window* WindowManager::CreateWindow(const glm::vec2 &windowSize, const std::string& name,  const bool &fullscreen)
 	{
-		CreateWindow(windowSize.x, windowSize.y, name, fullscreen);
+		return CreateWindow(windowSize.x, windowSize.y, name, fullscreen);
 	}
 
-	void WindowManager::CreateWindow(const uint32_t &sizeX, const uint32_t &sizeY, const std::string& name, const bool &fullscreen)
+	Window* WindowManager::CreateWindow(const uint32_t &sizeX, const uint32_t &sizeY, const std::string& name, const bool &fullscreen)
 	{
 		m_Windows.push_back(new Window(sizeX, sizeY, name, fullscreen));
 		uint32_t index = m_Windows.size() - 1;
 		m_Windows[index]->SetCloseCallback(WindowManager::DestroyWindow, index);
+		return m_Windows[index];
 	}
 
 	bool WindowManager::DestroyWindow(const uint32_t &index)
