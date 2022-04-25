@@ -1,3 +1,9 @@
+/*
+ *  Author: Peter Bou Saada
+ *  Filename: Core.h
+ *  Description: Main Include for the Renderer.
+ */
+
 #pragma once
 
 // Basic includes that will be used a lot

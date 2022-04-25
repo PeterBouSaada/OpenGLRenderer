@@ -1,3 +1,9 @@
+/*
+ *  Author: Peter Bou Saada
+ *  Filename: Window.cpp
+ *  Description: Logic for initializing GLFW and creating a window.
+ */
+
 #include "Window.h"
 
 namespace Renderer
@@ -20,14 +26,19 @@ namespace Renderer
 
 	void Window::InitializeGLFW(const glm::vec2 &size, const std::string& name, const bool &fullscreen)
 	{
+		// Attempt to initialize GLFW
 		if(!glfwInit())
-			std::cout << "Renderer::Window: Failed to Initialize GLFW" << std::endl;
+		{
+			std::cout << "Renderer::Window: Failed to Initialize GLFW. Terminating process..." << std::endl;
+			return;
+		}
 
 		glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+		// fullscreen support
 		GLFWmonitor* monitor = nullptr;
 
 		if (fullscreen)
@@ -38,8 +49,10 @@ namespace Renderer
 		m_Window = glfwCreateWindow(size.x, size.y, name.c_str(), monitor, nullptr);
 		glfwMakeContextCurrent(m_Window);
 
+		// Set this window id user pointer to the current class instance to retrieve later.
 		glfwSetWindowUserPointer(m_Window, this);
 
+		// Create and provide window close callback
 		auto WindowCloseCallback = [](GLFWwindow *window)
 		{
 			Window* win = (Window*)glfwGetWindowUserPointer(window);
@@ -67,6 +80,7 @@ namespace Renderer
 
 	void Window::DestroyWindow()
 	{
+		// destroy current window and call WindowManager function with correct index
 		glfwDestroyWindow(m_Window);
 		if(m_CallbackIndex >= 0 && m_CloseCallbackFunc != nullptr)
 			m_CloseCallbackFunc((uint32_t)m_CallbackIndex);
